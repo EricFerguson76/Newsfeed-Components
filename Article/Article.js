@@ -149,6 +149,7 @@ function createArticle(news) {
   articleP1.textContent = news.firstParagraph;
   articleP2.textContent = news.secondParagraph;
   articleP3.textContent = news.thirdParagraph;
+  button.textContent = 'expand';
 
   article.addEventListener('click', e => {
     console.log('button clicked', e.target);
