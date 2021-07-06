@@ -85,6 +85,16 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+
+  {
+    title: 'Node.js vs Java',
+    date: 'Oct 30, 2019',
+    firstParagraph: `Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead. `,
+
+    secondParagraph: `Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead. `,
+
+    thirdParagraph: `Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.`
   }
 ];
 
@@ -112,3 +122,43 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+const articles = document.querySelector('.articles');
+
+function createArticle(news) {
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleP1 = document.createElement('p');
+  const articleP2 = document.createElement('p');
+  const articleP3 = document.createElement('p');
+  const button = document.createElement('span');
+
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(articleP1);
+  article.appendChild(articleP2);
+  article.appendChild(articleP3);
+  article.appendChild(button);
+
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  button.classList.add('expandButton');
+
+  articleTitle.textContent = news.title;
+  articleDate.textContent = news.date;
+  articleP1.textContent = news.firstParagraph;
+  articleP2.textContent = news.secondParagraph;
+  articleP3.textContent = news.thirdParagraph;
+  button.textContent = 'expand';
+
+  article.addEventListener('click', e => {
+    console.log('button clicked', e.target);
+    article.classList.toggle('article-open');
+  });
+
+  return article;
+}
+
+data.forEach(news => {
+  articles.appendChild(createArticle(news));
+});
